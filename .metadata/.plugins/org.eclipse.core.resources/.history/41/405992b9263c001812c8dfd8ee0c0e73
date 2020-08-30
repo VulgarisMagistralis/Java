@@ -1,0 +1,25 @@
+package vehicleXample;
+
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Locale;
+
+public class Employee extends Person{
+	private String companyName;
+	private int numberOfSales;
+	public Employee(String fiscal, String company, String name, String surname, double initialCredit) {
+		super(name, surname, fiscal);
+		super.balance = initialCredit;
+		companyName = company;
+	}
+
+	@Override
+	public String toString() {
+		NumberFormat toCurrency = NumberFormat.getCurrencyInstance(Locale.ITALY);
+		return String.format("%-15s %-15s %-10s %-5d %7s",name,sName,fCode,garage.size(),toCurrency.format(balance));
+	}
+
+	@Override
+	public void updateBalance(double spent) { super.balance = super.balance - spent + getAdvance();}
+	public double getAdvance() {return numberOfSales * 0.03;}
+}

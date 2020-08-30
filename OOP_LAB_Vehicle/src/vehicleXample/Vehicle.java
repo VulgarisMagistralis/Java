@@ -1,0 +1,121 @@
+package vehicleXample;
+import java.util.Locale;
+import java.util.Scanner;
+import java.text.NumberFormat;
+import java.security.SecureRandom;
+public class Vehicle implements Comparable<Vehicle>{ //Javabean !
+	private int year;
+	private double price;
+	private Person owner;
+	private String plate;
+	protected String make;
+	protected String model;
+	private boolean onSale;
+	protected String bodyType;
+	static final int INT_PARSE = 2;
+	static final int PLATE_SIZE = 8;
+	private String sampleNums = "0123456789";
+	private String sampleString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private SecureRandom randomize = new SecureRandom();
+	///////////////////// WHAT S NEXT
+	@Override
+	public int hashCode() {return plate.hashCode();}
+	//must use the hash code to turn it into integer value-> if attribute was integer .hashcode isnt neeeded
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		Vehicle other = (Vehicle) obj;
+		if (!make.equals(other.make))return false;
+		if (!model.equals(other.model)) return false;
+		return plate.equals(other.plate);
+	}
+	///////////////////// CONSTRUCTORS FOR VARIOUS USE CASES
+	public Vehicle() {
+		year = 1900;
+		price = -999; 
+		owner = new Employee(); 
+		plate = generatePlate();
+	}
+	public Vehicle(int year, String make, String model, Person owner) {
+		price = -1;
+		this.year = year;
+		this.make = make;
+		this.model = model;
+		if(owner == null) {
+			if(owner instanceof Employee) this.owner = new Employee();
+			if(owner instanceof Customer) this.owner = new Customer();
+		}else this.owner = owner;
+		this.plate = generatePlate();
+	}
+	public Vehicle(int price, int year, String make, String model, String bodyType, Person owner) {
+		//lots of error checks needed damn
+		this.make = make;
+		this.price = price;
+		this.model = model;
+		this.owner = owner;
+		this.bodyType = bodyType;
+		plate = generatePlate();
+	}
+	///////////////////// UTILITY FUNCTIONS
+	public void setPrice(int proposed) {
+		Scanner in = new Scanner(System.in);		
+		while(proposed < 1500) {System.err.println("Entered price is low!\n Enter new prosed price:");proposed = in.nextInt();}
+		in.close();
+		price = proposed;
+	}
+	private double costCalc(Double taxMultiplier) {
+		Scanner in = new Scanner(System.in);		
+		while(taxMultiplier <= 0.02) {System.err.println("Invalid multiplier entered!Enter the appropriate value");taxMultiplier = in.nextDouble();}
+		in.close();
+		return (this.price * taxMultiplier);
+	}
+    private double getCost() {
+    	Scanner in = new Scanner(System.in);
+    	if(price < 0) {	
+    		char ans;
+    		System.err.println("Price is not determined for "+ plate +" yet");
+    		System.out.println("Would you like to set it now?[Y/N]"); 
+    		ans = in.next().charAt(0);
+    		if(ans == 'Y' || ans == 'y') {
+    			System.out.println("Enter the price of vehicle before tax:");
+    			price = (int)in.nextDouble(); 
+    		}
+    	}
+    	in.close();
+    	if(price < 10000) return costCalc(0.23);
+    	else if(price < 90000) return costCalc(0.77);
+    	else return costCalc(1.12);
+    }
+    private String generatePlate(){
+		StringBuilder plateBuild = new StringBuilder(PLATE_SIZE);
+		for(int i = 0; i <= PLATE_SIZE; i++)
+			if(i < INT_PARSE || i > PLATE_SIZE-INT_PARSE) plateBuild.append(sampleNums.charAt(randomize.nextInt(sampleNums.length())));
+			else if(i == INT_PARSE || i == PLATE_SIZE-INT_PARSE) plateBuild.append(" ");
+			else plateBuild.append(sampleString.charAt(randomize.nextInt(sampleString.length())));
+		return plateBuild.toString();
+	}
+    public void printVehicle() {
+		NumberFormat toCurrency = NumberFormat.getCurrencyInstance(Locale.ITALY);
+		System.out.println(String.format("%-10s %-20s %-20s %-10s",plate,owner.getName(),owner.getsName(),toCurrency.format(price)));
+	}
+    ///////////////////// GETTERS
+    public int getYear() {return year;}
+    public String getId() {return plate;}
+    public String getMake() {return make;}
+	public double getPrice() {return price;}
+	public String getModel() {return model;}
+    public Person getOwner() {return owner;}
+    public boolean isOnSale() {return onSale;}
+	public String getBodyType() {return bodyType;}
+	//////////////////// SETTERS
+	public void setYear(int year) {this.year = year;}
+	public void setMake(String make) {this.make = make;}
+	public void setModel(String model) {this.model = model;}
+    public void setOwner(Person owner) {this.owner = owner;}
+	public void setOnSale(boolean onSale) {this.onSale = onSale;}
+	public void setBodyType(String bodyType) {this.bodyType = bodyType;}
+	public int compareTo(Vehicle temp) {return (int)(getCost()-temp.getCost());}
+	public String toString() {return String.format("%-10s %2s %-15s %-15s On sale: %-10s",plate,owner,make,model,onSale);}
+}

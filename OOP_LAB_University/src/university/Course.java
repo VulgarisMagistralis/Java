@@ -1,0 +1,31 @@
+package university;
+
+public class Course {
+	private String title;
+	private int courCode;
+	private String teacher;
+	private int attendeeCount;
+	private final int MAX_ATT = 100;
+	private Student attendees[] = new Student[1];
+	public void addAttendee(Student attendee) {
+		if(attendeeCount >= MAX_ATT) { System.err.println("STUDENT LIMIT REACHED!");return;}
+		if(attendees.length >= attendeeCount / 2) incAttendeeSize();
+		attendees[attendeeCount++] = attendee;
+	}
+	private void incAttendeeSize() {
+		Student[] temp = new Student[(attendeeCount + 1) * 3];
+		for(int i = 0; i < attendees.length; i++) temp[i] = attendees[i];
+		attendees = temp;
+	}
+	public String getTitle() {return title;}
+	public void setTitle(String title) {this.title = title;}
+	public Student[] getAttendee_list() {return attendees;}
+	public void setAttendee_list(Student[] attendee_list) {	this.attendees = attendee_list;}
+	public Course(String title,String teacher) {this.title = title;	this.teacher = teacher;attendeeCount = 0;}
+	public String getTeacher() {return teacher;}
+	public void setTeacher(String teacher) {this.teacher = teacher;}
+	public int getCourCode() {return courCode;}
+	public void setCourCode(int courCode) {this.courCode = courCode;}
+	public int getAttendeeCount() {return attendeeCount;}
+	public void setAttendeeCount(int attendeeCount) {this.attendeeCount = attendeeCount;}
+}

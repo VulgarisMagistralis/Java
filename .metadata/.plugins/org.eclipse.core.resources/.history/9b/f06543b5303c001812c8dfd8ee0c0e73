@@ -1,0 +1,66 @@
+package vehicleXample;
+
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Locale;
+
+public class Employee extends Person{
+	private ArrayList<Vehicle> soldCars;
+	private String companyName;
+	private int numberOfSales;
+	public Employee(String fiscal, String company, String name, String surname, double initialCredit) {
+		super(name, surname, fiscal);
+		super.balance = initialCredit;
+		companyName = company;
+	}
+	public String getSaleRep() {
+		String report = "";
+		double total = 0.0;
+		for(Vehicle v : soldCars) {
+			total = total + v.getPrice();
+			report = report + v.toString() + "\n";
+		}
+		report = report + "Total sold:" + total;
+		return report;
+	}
+	@Override
+	public String toString() {
+		NumberFormat toCurrency = NumberFormat.getCurrencyInstance(Locale.ITALY);
+		return String.format("%-15s %-15s %-10s %-5d %-7s %-15s", 
+				super.name, 
+				super.sName,
+				super.fCode,
+				soldCars.size(),
+				toCurrency.format(super.balance),
+				companyName);
+	}
+	@Override
+	public void updateBalance(double spent,int operation) {
+		super.balance = super.balance + spent*((-1) ^ operation) + getAdvance();
+		}
+	public double getAdvance() {return numberOfSales * 0.03;}
+	@Override
+	public void sellCar(Person buyer, String vehicleID) {
+		for(Vehicle v: super.getGarage())
+			if(v.getId().equals(vehicleID) && buyer.getBalance() >= v.getPrice()) {
+				buyer.updateBalance(v.getPrice(), 1);
+				updateBalance(v.getPrice(), 0);
+				buyer.addToGarage(v);
+				removeCar(v.getId());
+			}
+		
+	}
+
+
+
+	@Override
+	public void buyCar(Person seller, String vehicleID) {
+	
+		
+	}
+	@Override
+	public void removeCar(String vehicleID) {
+		
+		
+	}
+}

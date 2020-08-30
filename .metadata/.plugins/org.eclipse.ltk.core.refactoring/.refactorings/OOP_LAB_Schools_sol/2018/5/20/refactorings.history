@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;testSchools.jar&apos; to &apos;Requirements.html&apos;&#x0A;- Original project: &apos;OOP_LAB_Schools_sol&apos;&#x0A;- Destination element: &apos;Requirements.html&apos;&#x0A;- Original element: &apos;testSchools.jar&apos;&#x0A;- Update references to refactored element" description="Move file" element1="testSchools.jar" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1526650093305" target="/OOP_LAB_Schools/Requirements.html" units="0" version="1.0"/>
+</session>

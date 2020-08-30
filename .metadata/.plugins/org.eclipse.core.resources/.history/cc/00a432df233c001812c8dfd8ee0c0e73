@@ -1,0 +1,52 @@
+package vehicleXample;
+import java.text.NumberFormat;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.Locale;
+public abstract class Person {
+	private int age;
+	private String name;
+	private String sName;
+	private final String fCode;
+	private double balance = 100000;
+	private ArrayList<Vehicle> garage = new ArrayList<Vehicle>();
+	///////
+	public abstract void putOnSale(String vehicleID);
+
+	@Override
+	public int hashCode() {return fCode.hashCode();}
+	@Override // write minding the constructor -> e.g. cant create person without fcode
+	public boolean equals(Object obj) {
+		if(this == obj) return true;
+		if(obj == null) return false;
+		if(getClass() != obj.getClass()) return false;
+		Person other = (Person) obj;
+	    if(!name.equals(other.name)) return false;
+		if(!sName.equals(other.sName))	return false;
+		return fCode.equals(other.fCode);
+	}
+	@Override
+	public String toString() {
+		NumberFormat toCurrency = NumberFormat.getCurrencyInstance(Locale.ITALY);
+		return String.format("%-15s %-15s %-10s %-5d %7s",name,sName,fCode,garage.size(),toCurrency.format(balance));
+	}
+	//////
+	public int getAge() {return age;}
+	public String getName() {return name;}
+	public String getfCode() {return fCode;}
+	public String getsName() {return sName;}
+	public double getBalance() {return balance;}
+	public void setAge(int age) {this.age = age;}
+	public void setName(String name) {this.name = name;}
+	public ArrayList<Vehicle> getGarage() {return garage;}
+	public void setsName(String sName) {this.sName = sName;}
+	public void updateBalance(double spent) {balance = balance - spent;}	
+	public void addToGarage(Vehicle newVehicle) {garage.add(newVehicle);}
+	public Person() {name = "Government"; sName = "Property"; fCode = "00000";}
+	public Person(String name,String surname,String fiscal) {fCode = fiscal;this.name = name;this.sName = surname;age = 100;}
+	public void printGarage() {
+		Collections.sort(garage,new Comparator<Vehicle>() {	public int compare(Vehicle o1, Vehicle o2) {return (int) (o2.getPrice() - o1.getPrice());}});
+		System.out.println(String.format("%-10s %-10s %-10s", name, sName, "'s garage:")); for(Vehicle v: garage) v.printVehicle();
+	}	
+}

@@ -1,0 +1,20 @@
+package vehicleXample;
+
+import java.util.ArrayList;
+
+public class Employee extends Person{
+	private String companyName;
+	private int numberOfSales;
+	public Employee(String fiscal, String company, String name, String surname) {
+		super(name, surname, fiscal);
+		companyName = company;
+	}
+	@Override
+	public ArrayList<Vehicle> getGarage() {
+		// TODO Auto-generated method stub
+		return super.getGarage();
+	}
+	@Override
+	public void updateBalance(double spent) { super.balance = super.balance - spent + getAdvance();}
+	public double getAdvance() {return numberOfSales * 0.03;}
+}

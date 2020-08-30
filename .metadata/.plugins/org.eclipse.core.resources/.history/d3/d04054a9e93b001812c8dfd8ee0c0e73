@@ -1,0 +1,6 @@
+package vehicleXample;
+
+public class Employee extends Person{
+	private String company;
+	
+}

@@ -1,0 +1,37 @@
+package university;
+
+public class Course {
+	private String tittle;
+	private String teacher;
+	private int courCode;
+	private int attendeeCount = 0;
+	public Course(String title,String teacher) {
+		this.tittle = tittle;
+		this.teacher = teacher;
+	}
+	public String getTittle() {
+		return tittle;
+	}
+	public void setTittle(String tittle) {
+		this.tittle = tittle;
+	}
+	public String getTeacher() {
+		return teacher;
+	}
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
+	}
+	public int getCourCode() {
+		return courCode;
+	}
+	public void setCourCode(int courCode) {
+		this.courCode = courCode;
+	}
+	public int getAttendeeCount() {
+		return attendeeCount;
+	}
+	public void setAttendeeCount(int attendeeCount) {
+		this.attendeeCount = attendeeCount;
+	}
+
+}

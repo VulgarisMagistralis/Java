@@ -1,0 +1,18 @@
+package clinic;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
+public class Doctor {
+	private int ID;
+	private String name;
+	private String surname;
+	private String SSN;
+	private String spec;
+	private Map<String,Patient> patients = new TreeMap<>();
+	public Doctor(String first, String last, String ssn, int docID, String specialization){name = first;surname = last;ID = docID;	spec = specialization;SSN = ssn;}
+	public int getID() {return ID;}
+	public Collection<String> getPatients(){return new ArrayList<>(patients.keySet());}
+	public void addPatient(Patient p) {if(!patients.containsKey(p.getSSN())) patients.put(p.getSSN(), p);}
+	public String toString() {return surname+" "+name+" ("+SSN+") ["+ID+"]: "+spec;}	
+}

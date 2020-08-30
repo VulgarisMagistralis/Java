@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+firstStartup=false
+history.comment=ZG9uZS4\=;bGFzdCBleGFtcGxlIGlzIG5vdCBwcm9wZXI\=;MXN0IHZlcnNpb24\=;U28gZmFyIHNlZW1zIHRvIGJlIHdvcmtpbmc\=
+history.repositoryURL=aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUExhYnMvbWFzdGVyLw\=\=;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUExhYnMvczI0MDE3NA\=\=;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUDIwMTgv;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUDIwMTcv;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUDIwMTcvZG9jcy9DaGVja291dFN2blByb2plY3QuaHRtbA\=\=
+history.repositoryUser=czI0MDE3NA\=\=
+history.selectCheckoutUrl=aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUExhYnMvczI0MDE3NC9PT1BfTEFCX0NsaW5pYw\=\=;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUExhYnMvczI0MDE3NA\=\=;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUExhYnMvbWFzdGVyL09PUF9MQUJfU2Nob29sc19zb2w\=;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUExhYnMvbWFzdGVy;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUExhYnMvczI0MDE3NC9PT1BfTEFCX1NjaG9vbHM\=;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUDIwMTg\=;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUExhYnMvbWFzdGVyL09PUF9MQUJfQ2xpbmlj;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUExhYnMvbWFzdGVyL09PUF9MQUJfRGlldF9zb2w\=;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUExhYnMvczI0MDE3NC9PT1BfTEFCX0RpZXQ\=;aHR0cDovL29vcC5wb2xpdG8uaXQvc3ZuL09PUExhYnMvbWFzdGVyL09PUF9MQUJfSHlkcmF1bGljc19zb2w\=
+org.eclipse.team.svn.ui.panel.ListSelectionPanel.height=175
+org.eclipse.team.svn.ui.panel.ListSelectionPanel.width=470
+org.eclipse.team.svn.ui.panel.callback.PromptCredentialsPanel.height=198
+org.eclipse.team.svn.ui.panel.callback.PromptCredentialsPanel.width=470
+org.eclipse.team.svn.ui.panel.common.RepositoryTreePanel.height=230
+org.eclipse.team.svn.ui.panel.common.RepositoryTreePanel.width=470
+org.eclipse.team.svn.ui.panel.local.CommitPanel.height=419
+org.eclipse.team.svn.ui.panel.local.CommitPanel.width=600
+org.eclipse.team.svn.ui.panel.reporting.ErrorCancelPanel.height=128
+org.eclipse.team.svn.ui.panel.reporting.ErrorCancelPanel.width=640
+preference.repository.repositoryBrowser=false

@@ -1,0 +1,29 @@
+package vehicleXample;
+
+import java.util.ArrayList;
+
+public class Customer extends Person{
+	
+
+	@Override
+	public double getBalance() {
+		// TODO Auto-generated method stub
+		return super.getBalance();
+	}
+
+	@Override
+	public ArrayList<Vehicle> getGarage() {
+		// TODO Auto-generated method stub
+		return super.getGarage();
+	}
+
+	@Override
+	public void updateBalance(double spent) {
+		// TODO Auto-generated method stub
+		super.updateBalance(spent);
+	}
+
+
+	
+
+}

@@ -1,0 +1,9 @@
+package vehicleXample;
+public class SUV extends Vehicle{
+	public SUV(int year, String make, String model, Person peep) {
+		super(year, make, model, peep);
+		super.bodyType = "SUV";
+		super.setPrice(50000000 / year);
+	}
+	public String getBodyType() {return "SUV";}
+}

@@ -1,0 +1,12 @@
+package clinic;
+
+public class Doctor {
+	private int ID;
+	private String name;
+	private String surname;
+	private String SSN;
+	private String spec;
+	public Doctor(String first, String last, String ssn, int docID, String specialization) {
+		
+	}
+}

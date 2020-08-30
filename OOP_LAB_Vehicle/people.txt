@@ -1,0 +1,5 @@
+00001,Cornelius,Vanderbilt,100000
+00002,John Davison,Rockefeller,90000
+00003,Andrew,Carnegie,80000
+00004,Porsche of West Houston,John Pierpont,Morgan,70000
+00005,J.P. MORGAN CHASE & CO,Henry,Ford,60000

@@ -1,0 +1,18 @@
+package clinic;
+
+public class Doctor {
+	private int ID;
+	private String name;
+	private String surname;
+	private String SSN;
+	private String spec;
+	public Doctor(String first, String last, String ssn, int docID, String specialization) {
+		name = first;
+		surname = last;
+		ID = docID;
+		spec = specialization;
+		SSN = ssn;
+	}
+	@Override
+	public String toString() {return surname+" "+name+" ("+SSN+") ["+ID+"]: "+spec;}	
+}

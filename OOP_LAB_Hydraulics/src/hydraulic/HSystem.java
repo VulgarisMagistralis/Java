@@ -1,0 +1,63 @@
+package hydraulic;
+public class HSystem {
+	private int elemNo;
+	private Element[] elements;
+	public HSystem() {elemNo = 0;elements = new Element[elemNo];}
+	public void addElement(Element elem){elements = incrementSize();elements[elemNo++] = elem;}
+	private Element[] incrementSize() {
+		Element[] temp_elem = new Element[elemNo+1];
+		for(int i = 0; i < elements.length; i++) temp_elem[i] = elements[i];
+		return temp_elem;
+	}
+	public Element[] getElements(){return elements;}
+	public String layout(){
+		String landscape = "";
+		for(Element e : elements)if(e instanceof Source)landscape = landscape + printTree(e);
+		return landscape;
+	}
+	private String printTree(Element e) {
+		String comp = "";
+		if(e instanceof Sink)comp = comp +e.elemType+"["+e.getElementName()+": "+e.getFlowIn()+"] ||"+printTree(e.getNext());
+		if(e instanceof Split) {
+			String s1 = "", s2 = "\n";
+			comp = comp+e.elemType+"["+e.getElementName()+": "+e.getFlowIn()+"] ╦ ";
+			if(((Split)e).getNext1() != null) comp = comp + printTree(((Split)e).getNext1())+" ";
+			if(((Split)e).getNext2() != null) {
+				/////////////////
+				for(int i = 0; i < comp.lastIndexOf(" "); i++) s2 = s2 + " ";
+				s2 = s2 + "\t\t    ╠=" + printTree(((Split)e).getNext2());
+				///////////////////
+			}
+			comp = comp + s1 + s2;
+		}
+		if(e instanceof Tap) comp = comp +e.elemType+"["+e.getElementName()+": "+e.getFlowIn()+"] == "+printTree(e.getNext());
+		if(e instanceof Source) comp = comp +e.elemType+"["+e.getElementName()+": "+e.getFlowIn()+"] == "+printTree(e.getNext());
+		return comp;
+	}
+	public void simulate(){for(Element e : getElements())if(e instanceof Source)fillPipes(e);}
+	private void fillPipes(Element current) {
+		System.out.println("Name: "+current.getElementName()+" Flow: "+current.getFlowIn());
+		if(current instanceof Sink) return;
+		if(current instanceof Source) {
+			current.getNext().setFlow(current.getFlowOut());
+			fillPipes(current.getNext());
+		}
+		if(current instanceof Tap) {
+			if(((Tap) current).isOpen()) current.setFlowOut(current.getFlowIn());
+			else current.setFlowOut(0);
+			current.getNext().setFlow(current.getFlowOut());
+			fillPipes(current.getNext());
+		}
+		if(current instanceof Split) {
+			current.setFlowOut(current.getFlowIn());
+			if(((Split) current).getNext1() != null) {
+				((Split) current).getNext1().setFlow(current.getFlowOut());
+				fillPipes(((Split) current).getNext1());
+			}
+			if(((Split) current).getNext2() != null) {
+				((Split) current).getNext2().setFlow(current.getFlowOut());
+				fillPipes(((Split) current).getNext2());
+			}
+		}
+	}
+}

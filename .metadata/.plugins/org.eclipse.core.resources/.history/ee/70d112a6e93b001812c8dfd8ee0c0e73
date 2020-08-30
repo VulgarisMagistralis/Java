@@ -1,0 +1,73 @@
+package vehicleXample;
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
+public class Main {
+	//person -> customer
+	static Person[] peeps = {
+			new Customer("Cornelius", "Vanderbilt", "00001"),
+			new Person("John Davison","Rockefeller", "00002"),
+			new Person("Andrew", "Carnegie", "00003"), 
+			new Person("John Pierpont" ,"Morgan", "00004"),
+			new Person("Henry", "Ford", "00005")
+	};
+	public static void main(String args[]) {
+		ArrayList<Vehicle> vehicles = initExample(Integer.parseInt(args[0]));
+		//for(Vehicle v: vehicles) v.printVehicle();
+		sellCars();
+		for(Vehicle v: vehicles) System.out.println(v);
+		for(Vehicle v: vehicles) if(v.isOnSale()) buyCars(v,peeps[0]);
+		System.out.println(peeps[0]);
+	}
+	private static void buyCars(Vehicle car, Person buyer) {
+		if(!car.isOnSale()) {System.err.println("Vehicle NOT for sale");return;}
+		if(buyer.getBalance()<car.getPrice()) {System.err.println("Cheap fuck!");return;}
+		car.setOnSale(false);
+		buyer.addToGarage(car);
+		buyer.updateBalance(car.getPrice());
+	}	
+ 	private static void sellCars() {
+		int i = 0;
+		for(Person p: peeps)
+			if(i < p.getGarage().size()) p.putOnSaleCar(p.getGarage().get(i++).getId());
+			else p.putOnSaleCar(p.getGarage().get(--i).getId());
+	}
+	private static ArrayList<Vehicle> initExample(int total) {
+		ArrayList<Vehicle> tempList = new ArrayList<Vehicle>(total);
+		addSedan((int)(total / 3), tempList);
+		addCoupe((int)(total / 3), tempList);
+		addSUV((int)(total / 3), tempList);
+		Collections.sort(tempList);
+		return tempList;
+	}
+	private static void addSedan(int quantity, ArrayList<Vehicle> v) {
+		Random r = new Random(); Vehicle temp;
+		for(int i = 0; i < quantity; i++) {
+			if(i % 3 == 0) temp = new Sedan(r.nextInt(2018 -1956 + 1) + 1956, "BMW", "335i", peeps[i % 5]);
+			else if(i%3 == 1) temp = new Sedan(r.nextInt(2016 -1966 + 1) + 1966, "MERCEDES", "E250",peeps[i % 5]);
+			else temp = new Sedan(r.nextInt(2018 -1999 + 1) + 1999, "AUDI", "RS6", peeps[i % 5]);
+			peeps[i % 5].addToGarage(temp);
+			v.add(temp);
+		}
+	}
+	private static void addSUV(int quantity, ArrayList<Vehicle> v) {
+		Random r = new Random(); Vehicle temp;
+		for(int i = 0; i< quantity; i++) {
+			if(i%3 == 0) temp = new SUV(r.nextInt(2019 -1956 + 1) + 1956, "VOLVO", "XC90", peeps[i % 5]);
+			else if(i%3 == 1) temp = new SUV(r.nextInt(2019 -1999 + 1) + 1999, "JEEP", "WRANGLER", peeps[i % 5]);
+			else temp = new SUV(r.nextInt(2009 -1999 + 1) + 1999, "CADILLAC", "ESCLADE", peeps[i % 5]);
+			peeps[i % 5].addToGarage(temp);
+			v.add(temp);
+		}
+	}
+	private static void addCoupe(int quantity, ArrayList<Vehicle> v) {
+		Random r = new Random(); Vehicle temp;
+		for(int i = 0; i< quantity; i++) {
+			if(i % 3 == 0) temp = new Coupe(r.nextInt(2017 -1988 + 1) + 1988, "FIAT", "500", peeps[i % 5]);
+			else if(i%3 == 1) temp = new Coupe(r.nextInt(2010 -1986 + 1) + 1986, "MAZDA", "MIATA",peeps[i % 5]);
+			else temp = new Coupe(r.nextInt(2014 -1999 + 1) + 1999, "PORSCHE", "911T", peeps[i % 5]);
+			peeps[i % 5].addToGarage(temp);
+			v.add(temp);
+		}
+	}
+}

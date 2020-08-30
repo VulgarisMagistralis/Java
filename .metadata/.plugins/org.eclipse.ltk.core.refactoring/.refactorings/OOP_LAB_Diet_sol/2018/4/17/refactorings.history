@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;testDiet.jar&apos; to &apos;OOP_LAB_Diet&apos;&#x0A;- Original project: &apos;OOP_LAB_Diet_sol&apos;&#x0A;- Destination element: &apos;OOP_LAB_Diet&apos;&#x0A;- Original element: &apos;testDiet.jar&apos;" description="Copy file" destination="=OOP_LAB_Diet" element1="testDiet.jar" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1524835154899" units="0" version="1.0"/>
+</session>

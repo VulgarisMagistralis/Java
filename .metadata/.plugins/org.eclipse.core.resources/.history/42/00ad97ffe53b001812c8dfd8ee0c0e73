@@ -1,0 +1,5 @@
+package vehicleXample;
+
+public class Customer extends Person{
+
+}

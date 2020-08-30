@@ -1,0 +1,94 @@
+package schools;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
+import static java.util.stream.Collectors.*;
+public class Region {
+	private String name;
+	Map<String, School> schools = new TreeMap<>();
+	Map<Integer, Branch> branches = new TreeMap<>();
+	Map<String, Community> commies = new TreeMap<>();
+	Map<String, Municipality> munis = new TreeMap<>();	
+	public Region(String name){this.name = name;}
+	public String getName(){return name;}
+	public Collection<School> getSchools(){return schools.values();}
+	public Collection<Community> getCommunities(){return commies.values();}
+	public Collection<Municipality> getMunicipalies(){return munis.values();}
+	public Community newCommunity(String name, Community.Type type){
+		if(commies.containsKey(name)) return commies.get(name);
+		commies.put(name, new Community(name, type));
+		return commies.get(name);
+	}
+	public Municipality newMunicipality(String nome, String province){
+		if(munis.containsKey(nome)) return munis.get(nome);
+		munis.put(nome, new Municipality(nome, province, null));
+		return munis.get(nome);
+	}
+	public Municipality newMunicipality(String nome, String province, Community comunita){
+		if(munis.containsKey(nome)) return munis.get(nome);
+		Municipality temp = new Municipality(nome, province, comunita);
+		comunita.addMuni(temp);
+		munis.put(nome, temp);		
+		return munis.get(nome);
+	}
+	public School newSchool(String name, String code, int grade, String description){
+		School temp = new School(name, code, grade, description);
+		schools.put(code, temp);
+		return schools.get(code);
+	}
+	public Branch newBranch(int regionalCode, Municipality m,String address, int zipCode, School school){ 
+		Branch temp = new Branch(regionalCode, m, address, zipCode, school);
+		branches.put(regionalCode,temp);
+		school.addBranch(temp);
+		return branches.get(regionalCode);
+	}
+	@SuppressWarnings("unchecked")
+	public void readData(String file) {
+		List<String> lines = new ArrayList<>();
+		List<String> elements = new ArrayList<>();
+		try(BufferedReader in = new BufferedReader(new FileReader(file))){lines = in.lines().collect(toList());
+		}catch(IOException e){System.err.println(e.getMessage());}
+		for(int i = 1; i < lines.size(); i++) {
+			elements = Arrays.asList(lines.get(i).split(","));
+			if(elements.size() == 11 && !elements.get(10).isEmpty()) {
+				commies.put(elements.get(10), newCommunity(elements.get(10), Community.Type.MONTANA));
+				munis.put(elements.get(1),newMunicipality(elements.get(1),elements.get(0),commies.get(elements.get(10))));
+			}else if(elements.size() == 10) {
+				commies.put(elements.get(9), newCommunity(elements.get(9), Community.Type.COLLINARE));
+				munis.put(elements.get(1),newMunicipality(elements.get(1),elements.get(0), commies.get(elements.get(9))));
+			}else if(elements.size() == 9)	munis.put(elements.get(1), newMunicipality(elements.get(1), elements.get(0)));
+			schools.put(elements.get(5),newSchool(elements.get(6), elements.get(5),Integer.parseInt(elements.get(2)), elements.get(3)));
+			branches.put(Integer.parseInt(elements.get(4)),newBranch(Integer.parseInt(elements.get(4)),munis.get(elements.get(1)),elements.get(7),Integer.parseInt(elements.get(8)),schools.get(elements.get(5))));
+		}
+		long l =  schools.values().stream().flatMap(s->s.getBranches().stream()).count();
+		System.out.println("why"+ l);
+	}
+	public Map<String,Long>countSchoolsPerDescription(){return schools.values().stream().collect(Collectors.groupingBy(x->((School)x).getDescription(),Collectors.counting()));}
+	public Map<String,Long>countBranchesPerMunicipality(){return branches.values().stream().collect(Collectors.groupingBy(x->((Branch)x).getMunicipality().getName(),Collectors.counting()));}
+	public Map<String,Map<String,Long>>countBranchesPerMunicipalityPerProvince(){return munis.values().stream().collect(Collectors.groupingBy(Municipality::getProvince,Collectors.groupingBy(Municipality::getName,Collectors.counting())));}
+	public Collection<String> countSchoolsPerMunicipality(){
+		List<String> result = new ArrayList<>();
+		Map<String, Long> res = munis.values().stream().collect(Collectors.groupingBy(Municipality::getName,Collectors.counting()));
+		for(Map.Entry<String, Long> r:res.entrySet())result.add(r.getValue()+" - "+r.getKey());
+		return result;
+	}
+	public List<String> countSchoolsPerCommunity(){
+		long count;
+		List<String> result = new ArrayList<>();
+		Map<Optional<Community>, Map<String, Long>> res = munis.values().stream().filter(x->x.getCommunity().isPresent()).collect(Collectors.groupingBy(Municipality::getCommunity,Collectors.groupingBy(Municipality::getName,Collectors.counting())));
+		for(Map.Entry<Optional<Community>, Map<String, Long>> r : res.entrySet()) {
+			count = 0;
+			for(Map.Entry<String, Long> i : r.getValue().entrySet())count = count + i.getValue();
+			result.add(count+" - "+r.getKey().get().getName());
+		}		
+		return result;
+	}
+}

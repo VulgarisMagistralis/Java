@@ -1,0 +1,16 @@
+package schools;
+public class Branch {
+	private String branchCode;
+	private int CAP;
+	private String address;
+	private School school;
+	private Municipality muni;
+	public Branch(String regionalCode, Municipality m,String address, int zipCode, School school){
+		this.address = address;	this.school = school;branchCode = regionalCode;CAP = zipCode;this.muni = m;
+	}
+	public String getCode() {return branchCode;}
+	public String getAddress() {return address;}
+	public int getCAP() {return CAP;}
+	public Municipality getMunicipality(){return muni;}
+	public School getSchool(){return school;}
+}

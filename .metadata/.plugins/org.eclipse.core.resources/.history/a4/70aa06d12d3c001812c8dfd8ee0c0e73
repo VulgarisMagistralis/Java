@@ -1,0 +1,23 @@
+package vehicleXample;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+public class Customer extends Person{
+	public Customer(String name,String surname,String fiscal,double initialBalance) {
+		super(name, surname, fiscal);
+		super.balance = initialBalance;
+		
+	}
+	@Override
+	public String toString() {
+		NumberFormat toCurrency = NumberFormat.getCurrencyInstance(Locale.ITALY);
+		return String.format("%-15s %-15s %-10s %-5d %7s",
+				super.name,
+				super.sName,
+				super.fCode,
+				super.garage.size(),
+				toCurrency.format(super.balance));
+	}
+	@Override
+	public void updateBalance(double spent) { super.balance = super.balance - spent;}
+}

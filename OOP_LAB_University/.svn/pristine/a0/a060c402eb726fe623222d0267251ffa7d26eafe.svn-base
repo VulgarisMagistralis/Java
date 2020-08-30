@@ -1,0 +1,114 @@
+package university;
+
+public class University {
+	private String uniName;
+	private int counterCourse = 0;
+	private int counterStudent = 0;
+	private final int NO_STU = 10000;
+	private final int NO_COR = 10;
+	private final int MAX_COUR = 50;
+	private final int MAX_STU = 1000;
+	private Student[] student_list;
+	private Course[] course_list;
+	private Teacher rector;
+	//private Teacher[] teach_list;
+	public University(String name){uniName = name;}
+	public String getName(){return uniName;}
+	public void setRector(String first, String last){
+		rector.setTeacherName(first);
+		rector.setTeacherSurn(last);
+	}
+	public String getRector(){
+		return rector.getTeacherName() + " " + rector.getTeacherSurn();
+	}	
+	public int enroll(String first, String last){
+		if(counterStudent+1 > MAX_STU) {
+			System.err.println("Maximum number of students reached!");
+			return 0;
+		}
+		if(student_list.length <= counterStudent/2) increaseStudentSize();
+		Student freshman = new Student(first,last);
+		freshman.setID(++counterStudent + NO_STU);
+		student_list[counterStudent] = freshman;
+		return freshman.getID();
+	}
+	void increaseStudentSize(){
+		Student[] temp_list = new Student[counterCourse*2];
+		for(int i = 0; i < student_list.length; i++) temp_list[i] = student_list[i];
+		student_list = temp_list;
+	}
+	/**
+	 * Retrieves the information for a given student
+	 * @param id the id of the student
+	 * @return information about the student
+	 */
+	public String student(int id){
+		for(Student tempStudent : student_list)if(id == tempStudent.getID()) 
+			return tempStudent.getID()+" "+tempStudent.getStudentName()+" "+tempStudent.getStudentSurn();
+		System.err.println("STUDENT NOT FOUND!");
+		return null;
+	}	
+	/**
+	 * Activates a new course with the given teacher
+	 * @param title title of the course
+	 * @param teacher name of the teacher
+	 * @return the unique code assigned to the course
+	 */
+	public int activate(String title, String teacher){
+		if(counterCourse >= MAX_COUR) {
+			System.err.println("LIMIT REACHED!");
+			return 0;
+		}
+		if(course_list.length<= counterCourse/2) increaseCourseSize();
+		Course newCourse = new Course(title, teacher);
+		newCourse.setCourCode(NO_COR + counterCourse);
+		course_list[++counterCourse] = newCourse;
+		return newCourse.getCourCode();
+	}
+	
+	private void increaseCourseSize() {
+		Course[] temp_list = new Course[counterCourse*2];
+		for(int i = 0; i < course_list.length; i++)	temp_list[i] = course_list[i];
+		course_list = temp_list;
+	}
+
+	/**
+	 * Retrieve the information for a given course
+	 * @param code unique code of the course
+	 * @return information about the course
+	 */
+	public String course(int code){
+		for(Course c: course_list)if(c.getCourCode() == code)
+			return c.getCourCode()+" "+c.getTittle()+" "+c.getTeacher();
+		return null;
+	}
+	
+	/**
+	 * Register a student to attend a course
+	 * @param studentID id of the student
+	 * @param courseCode id of the course
+	 */
+	public void register(int studentID, int courseCode){
+		
+	}
+	
+	/**
+	 * Retrieve a list of attendees
+	 * @param courseCode unique id of the course
+	 * @return list of attendees separated by "\n"
+	 */
+	public String listAttendees(int courseCode){
+		//TODO: to be implemented
+		return null;
+	}
+
+	/**
+	 * Retrieves the study plan for a student
+	 * @param studentID id of the student
+	 * @return list of courses the student is registered for
+	 */
+	public String studyPlan(int studentID){
+		//TODO: to be implemented
+		return null;
+	}
+}

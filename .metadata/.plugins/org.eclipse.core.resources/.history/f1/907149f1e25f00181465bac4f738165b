@@ -1,0 +1,15 @@
+package clinic;
+
+public class Patient {
+	private String name;
+	private String SSN;
+	private String Surname;
+	public Patient() {
+		
+	}
+	public String toString() {
+		return Surname+" "+name+" ("+SSN+")";
+	}
+	
+	
+}

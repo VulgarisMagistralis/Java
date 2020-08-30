@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+externalMigrateFromAuthorizationDatabase/isMigrated=true
+migrateFromAuthorizationDatabase/isMigrated=true
+repositories/d02a2b456d2e00181203f03725353170=d02a2b456d2e00181203f03725353170;http\://oop.polito.it/svn/OOPLabs/s240174;http\://oop.polito.it/svn/OOPLabs/s240174;branches;tags;trunk;true;371eab56-6251-43f8-b3fa-a951e9a2c386;http\://oop.polito.it/svn/OOPLabs/s240174;;false;<http\://oop.polito.it\:80> OOP Labs Accounts @ PoliTo;;0
+repositories/d0548428072e00181f188dfbe0cae9de=d0548428072e00181f188dfbe0cae9de;http\://oop.polito.it/svn/OOP2018/;http\://oop.polito.it/svn/OOP2018/;branches;tags;trunk;true;d68589c7-7774-48eb-a2e9-6ea36a8c292e;http\://oop.polito.it/svn/OOP2018;;false;;;0
+repositories/f0373072a7440018173d993f63bed67a=f0373072a7440018173d993f63bed67a;http\://oop.polito.it/svn/OOPLabs/master/;http\://oop.polito.it/svn/OOPLabs/master/;branches;tags;trunk;true;500d301e-2376-45e4-8782-35d54c6592fb;http\://oop.polito.it/svn/OOPLabs/master;;false;;;0

@@ -1,0 +1,35 @@
+package university;
+
+public class Student {
+	private int ID;
+	private String studentName;
+	private String studentSurn;
+	private int courseCount = 0;
+	private final int MAX_COUR = 25;
+	public Student(String name, String surn){
+		studentName = name;
+		studentSurn = surn;
+	}
+	public void incCourseCounter() {courseCount++;}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+	public String getStudentName() {
+		return studentName;
+	}
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
+	}
+	public String getStudentSurn() {
+		return studentSurn;
+	}
+	public void setStudentSurn(String studentSurn) {
+		this.studentSurn = studentSurn;
+	}
+	public int getMAX_COUR() {
+		return MAX_COUR;
+	}
+}

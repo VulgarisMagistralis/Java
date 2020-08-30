@@ -1,0 +1,64 @@
+package diet;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+public class Food {
+	ArrayList<NutritionalElement> rawMats = new ArrayList<>(); 
+	ArrayList<NutritionalElement> products= new ArrayList<>();
+	ArrayList<NutritionalElement> recipes = new ArrayList<>();
+	public void defineRawMaterial(String name, double calories,  double proteins, double carbs, double fat){
+		RawMaterial newRaw = new RawMaterial(name, calories, proteins, carbs, fat);
+		if(rawMats.contains(newRaw)) return;
+		rawMats.add(newRaw);
+	}
+	public Collection<NutritionalElement> rawMaterials(){
+		Collections.sort(rawMats, new Comparator<NutritionalElement>() {
+			public int compare(NutritionalElement m0, NutritionalElement m1) {
+				return m0.getName().compareTo(m1.getName());
+			}
+		});
+		return rawMats;
+	}
+	public NutritionalElement getRawMaterial(String name){
+		if(name.isEmpty() || rawMats.isEmpty()) return null;
+		for(NutritionalElement n: rawMats) if(n.getName().compareTo(name) == 0) return n;
+		return null;
+	}
+	public void defineProduct(String name,  double calories, double proteins, double carbs, double fat){
+		Product newPro = new Product(name, calories, proteins, carbs, fat);
+		if(products.contains(newPro)) return;
+		products.add(newPro);
+	}
+	public Collection<NutritionalElement> products(){
+		Collections.sort(products, new Comparator<NutritionalElement>() {
+			public int compare(NutritionalElement m0, NutritionalElement m1) {
+				return m0.getName().compareTo(m1.getName());
+			}
+		});
+		return products;
+	}
+	public NutritionalElement getProduct(String name){
+		if(name.isEmpty() || products.isEmpty()) return null;
+		for(NutritionalElement n: products) if(n.getName().compareTo(name) == 0) return n;
+		return null;
+	}
+	public Collection<NutritionalElement> recipes(){
+		if(recipes.isEmpty()) return null;
+		Collections.sort(recipes, new Comparator<NutritionalElement>() {
+			public int compare(NutritionalElement m0, NutritionalElement m1) {
+				return m0.getName().compareTo(m1.getName());
+			}
+		});
+		return recipes;
+	}
+	public NutritionalElement getRecipe(String name){
+		if(name.isEmpty() || recipes.isEmpty()) return null;
+		for(NutritionalElement n: recipes) if(n.getName().compareTo(name) == 0) return n;
+		return null;
+	}
+	public void addRecipe(NutritionalElement r) {
+		if(recipes.contains(r)) return;
+		recipes.add(r);
+	}
+}

@@ -1,0 +1,26 @@
+package clinic;
+
+public class Patient {
+	private String name;
+	private String SSN;
+	private Doctor doc;
+	private String surname;
+	public Patient(String first, String last, String ssn) {
+		name = first;
+		surname = last;
+		SSN = ssn;
+	}
+	public String toString() {
+		return surname+" "+name+" ("+SSN+")";
+	}
+	public Doctor getDoc() {
+		return doc;
+	}
+	public void setDoc(Doctor doc) {
+		this.doc = doc;
+	}
+	public String getSSN() {
+		return SSN;
+	}
+	
+}

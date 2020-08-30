@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;BookShop.SpecialEditio&apos; to &apos;SpecialEdition&apos;&#x0A;- Original project: &apos;week_6&apos;&#x0A;- Original element: &apos;BookShop.SpecialEditio&apos;&#x0A;- Renamed element: &apos;BookShop.SpecialEdition&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;SpecialEditio&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;BookShop{SpecialEditio.java[SpecialEditio" matchStrategy="1" name="SpecialEdition" qualified="false" references="true" similarDeclarations="false" stamp="1522997345445" textual="false" version="1.0"/>
+</session>

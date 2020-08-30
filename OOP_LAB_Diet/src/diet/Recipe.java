@@ -1,0 +1,45 @@
+package diet;
+public class Recipe implements NutritionalElement{
+	private Food food;
+	private String name;
+	private double fat = 0;
+	private double carbs = 0;
+	private double proteins = 0;
+	private double calories = 0;
+	private double totalGrams = 0;
+	private static int PROP = 100;
+	public Recipe(String name, Food food){
+		this.name = name; this.food = food;
+		food.addRecipe((NutritionalElement)this);
+	}
+	public void addIngredient(String material, double quantity) {
+		for(NutritionalElement n: food.rawMaterials())
+			if(n.getName().equals(material)) {
+				calories = norm(norm(calories, totalGrams, PROP) + norm(n.getCalories(), quantity, PROP), PROP, totalGrams + quantity);
+				proteins = norm(norm(proteins, totalGrams, PROP) + norm(n.getProteins(), quantity, PROP), PROP, totalGrams + quantity);
+				carbs = norm(norm(carbs, totalGrams, PROP) + norm(n.getCarbs(), quantity, PROP), PROP, totalGrams + quantity);
+				fat = norm(norm(fat, totalGrams, PROP) + norm(n.getFat(), quantity, PROP), PROP, totalGrams + quantity);
+				totalGrams = totalGrams + quantity; return;
+			}
+	}
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		Product other = (Product) obj;
+		if (Double.doubleToLongBits(proteins) != Double.doubleToLongBits(other.getProteins()))return false;
+		if (Double.doubleToLongBits(carbs) != Double.doubleToLongBits(other.getCarbs())) return false;
+		if (Double.doubleToLongBits(fat) != Double.doubleToLongBits(other.getFat())) return false;
+		if (name == null) return false; // actually names are already checked in hash
+		else if (!name.equals(other.getName())) return false;
+		return true;
+	}
+	public double getFat() {return fat;}
+	public String getName() {return name;}	
+	public boolean per100g() {return true;}
+	public double getCarbs() {return carbs;}
+	public double getCalories() {return calories;}
+	public double getProteins() {return proteins;}
+	private double norm(double a, double b, double c) {return a * b / c;}
+	public int hashCode() {int code = Integer.parseInt(this.name); return code;}
+}

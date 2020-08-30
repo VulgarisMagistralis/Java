@@ -1,0 +1,13 @@
+AbstractTextEditor.Color.Background=0,0,0
+AbstractTextEditor.Color.FindScope=0,0,0
+AbstractTextEditor.Color.Foreground=255,255,255
+AbstractTextEditor.Color.SelectionBackground=153,153,102
+AbstractTextEditor.Color.SelectionForeground=64,64,64
+currentLineColor=0,0,0
+deletionIndicationColor=255,0,0
+eclipse.preferences.version=1
+filteredSearchResultIndicationColor=216,216,216
+lineNumberColor=153,153,153
+overviewRuler_migration=migrated_3.1
+printMarginColor=153,153,153
+searchResultIndicationColor=216,216,216

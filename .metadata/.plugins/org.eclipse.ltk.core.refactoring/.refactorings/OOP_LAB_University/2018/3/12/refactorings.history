@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;university.Course.attendeeCount&apos; in &apos;university.Course&apos;&#x0A;- Original project: &apos;OOP_LAB_University&apos;&#x0A;- Original element: &apos;university.Course.attendeeCount&apos;&#x0A;- Getter method name: &apos;getAttendeeCount&apos;&#x0A;- Setter method name: &apos;setAttendeeCount&apos;&#x0A;- Field visibility: &apos;public&apos;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;attendeeCount&apos;" flags="589830" getter="getAttendeeCount" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;university{Course.java[Course^attendeeCount" insertion="6" setter="setAttendeeCount" stamp="1521815265365" version="1.0" visibility="1"/>
+</session>
